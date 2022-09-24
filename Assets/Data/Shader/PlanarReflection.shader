@@ -58,6 +58,4 @@ Shader "Custom/PlanarReflection"
 			ENDCG
 		}
 	}
-
-	FallBack "Diffuse"
 }

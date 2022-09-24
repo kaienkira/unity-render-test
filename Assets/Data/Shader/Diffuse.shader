@@ -7,7 +7,12 @@ Shader "Custom/Diffuse"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque" "Queue" = "Geometry" "IgnoreProjector" = "true" }
+		Tags
+        {
+            "RenderType" = "Opaque"
+            "Queue" = "Geometry"
+            "IgnoreProjector" = "True"
+        }
 
 		Pass
 		{
@@ -52,6 +57,4 @@ Shader "Custom/Diffuse"
 			ENDCG
 		}
 	}
-
-	FallBack "Diffuse"
 }

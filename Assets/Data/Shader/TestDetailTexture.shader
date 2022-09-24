@@ -60,6 +60,4 @@ Shader "Custom/TestDetailTexture"
 			ENDCG
 		}
 	}
-
-	FallBack "Diffuse"
 }
