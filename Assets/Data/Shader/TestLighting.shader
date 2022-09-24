@@ -4,8 +4,8 @@ Shader "Custom/TestLighting"
 	{
 		_Tint ("Tint", Color) = (1, 1, 1, 1)
 		_MainTex("MainTex", 2D) = "white" {}
-		_Metallic ("Metallic", Range(0, 1)) = 0
-        _Smoothness ("Smoothness", Range(0, 1)) = 0.1
+        _Metallic ("Metallic", Range(0, 1)) = 0
+        _Smoothness ("Smoothness", Range(0, 1)) = 0.5
 	}
 
 	SubShader
@@ -26,6 +26,7 @@ Shader "Custom/TestLighting"
 			CGPROGRAM
 
             #pragma multi_compile DIRECTIONAL
+            #define USER_FORWARD_BASE_PASS
             #include "TestLighting.cginc"
 
 			ENDCG
