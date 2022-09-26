@@ -29,7 +29,7 @@ Shader "Custom/Diffuse"
 			struct appdata
 			{
 				float4 pos : POSITION;
-                float2 texMain : TEXCOORD0;
+                float2 uv : TEXCOORD0;
 			};
 
 			struct v2f
@@ -43,7 +43,7 @@ Shader "Custom/Diffuse"
 				v2f o;
 
 				o.pos = UnityObjectToClipPos(i.pos);
-				o.uvMain = TRANSFORM_TEX(i.texMain, _MainTex);
+				o.uvMain = TRANSFORM_TEX(i.uv, _MainTex);
 
 				return o;
 			}

@@ -12,11 +12,13 @@ sampler2D _MainTex;
 float4 _MainTex_ST;
 float _Metallic;
 float _Smoothness;
+sampler2D _NormalMap;
+float _BumpScale;
 
 struct appdata
 {
 	float4 pos : POSITION;
-    float2 texMain : TEXCOORD0;
+    float2 uv: TEXCOORD0;
     float3 normal: NORMAL;
 };
 
@@ -33,23 +35,30 @@ v2f vert(appdata i)
 	v2f o;
 
 	o.pos = UnityObjectToClipPos(i.pos);
-	o.uvMain = TRANSFORM_TEX(i.texMain, _MainTex);
+	o.uvMain = TRANSFORM_TEX(i.uv, _MainTex);
     o.normal = UnityObjectToWorldNormal(i.normal);
     o.worldPos = mul(unity_ObjectToWorld, i.pos);
 
 	return o;
 }
 
+void calculateNormal(inout v2f i)
+{
+    i.normal = UnpackScaleNormal(tex2D(_NormalMap, i.uvMain), _BumpScale);
+	i.normal = i.normal.xzy;
+	i.normal = normalize(i.normal);
+}
+
 fixed4 frag(v2f i) : SV_Target
 {
+    calculateNormal(i);
+	float3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
+
     float3 albedo = tex2D(_MainTex, i.uvMain).rgb * _Tint.rgb;
 	float3 specular;
 	float oneMinusReflectivity;
 	albedo = DiffuseAndSpecularFromMetallic(
 		albedo, _Metallic, specular, oneMinusReflectivity);
-
-    i.normal = normalize(i.normal);
-	float3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
 
     UNITY_LIGHT_ATTENUATION(attenuation, 0, i.worldPos);
     UnityLight directLight;

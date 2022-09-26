@@ -27,8 +27,7 @@ Shader "Custom/TestDetailTexture"
 			struct appdata
 			{
 				float4 pos : POSITION;
-                float2 texMain : TEXCOORD0;
-                float2 texDetail: TEXCOORD1;
+                float2 uv: TEXCOORD0;
 			};
 
 			struct v2f
@@ -43,8 +42,8 @@ Shader "Custom/TestDetailTexture"
 				v2f o;
 
 				o.pos = UnityObjectToClipPos(i.pos);
-				o.uvMain = TRANSFORM_TEX(i.texMain, _MainTex);
-				o.uvDetail = TRANSFORM_TEX(i.texDetail, _DetailTex);
+				o.uvMain = TRANSFORM_TEX(i.uv, _MainTex);
+				o.uvDetail = TRANSFORM_TEX(i.uv, _DetailTex);
 
 				return o;
 			}
