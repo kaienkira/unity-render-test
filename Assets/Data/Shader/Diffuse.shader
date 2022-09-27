@@ -18,6 +18,7 @@ Shader "Custom/Diffuse"
 		{
 			CGPROGRAM
 
+            #pragma multi_compile_instancing
 			#pragma vertex vert
 			#pragma fragment frag
 
@@ -28,7 +29,8 @@ Shader "Custom/Diffuse"
 
 			struct appdata
 			{
-				float4 pos : POSITION;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
+				float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
 			};
 
@@ -40,9 +42,10 @@ Shader "Custom/Diffuse"
 
 			v2f vert(appdata i)
 			{
-				v2f o;
+                UNITY_SETUP_INSTANCE_ID(i);
 
-				o.pos = UnityObjectToClipPos(i.pos);
+				v2f o;
+				o.pos = UnityObjectToClipPos(i.vertex);
 				o.uvMain = TRANSFORM_TEX(i.uv, _MainTex);
 
 				return o;
