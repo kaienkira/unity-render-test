@@ -2,8 +2,8 @@ Shader "Custom/TestLighting"
 {
 	Properties
 	{
-		_Tint ("Tint", Color) = (1, 1, 1, 1)
-		_MainTex("MainTex", 2D) = "white" {}
+		_MainTex("Abedo", 2D) = "white" {}
+		_Tint ("Abedo Tint", Color) = (1, 1, 1, 1)
         _Metallic ("Metallic", Range(0, 1)) = 0
         _Smoothness ("Smoothness", Range(0, 1)) = 0.5
 
@@ -49,7 +49,7 @@ Shader "Custom/TestLighting"
 			CGPROGRAM
 
             #pragma target 3.0
-            #pragma multi_compile POINT DIRECTIONAL SPOT
+            #pragma multi_compile DIRECTIONAL POINT SPOT
             #include "TestLighting.cginc"
 
 			ENDCG

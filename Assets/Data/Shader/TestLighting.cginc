@@ -42,16 +42,9 @@ v2f vert(appdata i)
 	return o;
 }
 
-void calculateNormal(inout v2f i)
-{
-    i.normal = UnpackScaleNormal(tex2D(_NormalMap, i.uvMain), _BumpScale);
-	i.normal = i.normal.xzy;
-	i.normal = normalize(i.normal);
-}
-
 fixed4 frag(v2f i) : SV_Target
 {
-    calculateNormal(i);
+	i.normal = normalize(i.normal);
 	float3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
 
     float3 albedo = tex2D(_MainTex, i.uvMain).rgb * _Tint.rgb;
