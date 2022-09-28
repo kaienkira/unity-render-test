@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: grid_1
+  m_Name: diffuse
   m_Shader: {fileID: 4800000, guid: cfd7b3fef6ba9e74e807fa5782a6cf32, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

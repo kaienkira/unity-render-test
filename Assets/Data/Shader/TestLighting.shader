@@ -8,7 +8,7 @@ Shader "Custom/TestLighting"
         _Smoothness ("Smoothness", Range(0, 1)) = 0.5
 
         _NormalMap ("NormalMap", 2D) = "bump" {}
-        _BumpScale ("BumpScale", Float) = 0.25
+        _BumpScale ("BumpScale", Float) = 1
 	}
 
 	SubShader
